@@ -417,6 +417,10 @@ RCT_EXPORT_METHOD(removeListeners : (NSInteger)count) {
     );
   } else {
     initializePromiseResolve(@"Initialize Zoom SDK successfully.");
+    [[MobileRTC sharedRTC] getMeetingSettings].meetingInviteHidden = YES;
+    [[MobileRTC sharedRTC] getMeetingSettings].meetingTitleHidden = YES;
+    [[MobileRTC sharedRTC] getMeetingSettings].meetingShareHidden = YES;
+    [[MobileRTC sharedRTC] getMeetingSettings].autoConnectInternetAudio = YES;
   }
 }
 
