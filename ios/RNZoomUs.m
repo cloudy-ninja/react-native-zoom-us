@@ -89,19 +89,19 @@ RCT_EXPORT_METHOD(
     //Note: This step is optional, Method is used for iOS Replaykit Screen share integration,if not,just ignore this step.
     context.appGroupId = data[@"iosAppGroupId"];
     BOOL initializeSuc = [[MobileRTC sharedRTC] initialize:context];
-    
+
     if (settings[@"enableCustomizedMeetingUI"]) {
       enableCustomMeeting = [[settings objectForKey:@"enableCustomizedMeetingUI"] boolValue];
     }
-    
+
     if (settings[@"disableShowVideoPreviewWhenJoinMeeting"]) {
       disableShowVideoPreviewWhenJoinMeeting = [[settings objectForKey:@"disableShowVideoPreviewWhenJoinMeeting"] boolValue];
     }
-    
+
     if (settings[@"disableMinimizeMeeting"]) {
       disableMinimizeMeeting = [[settings objectForKey:@"disableMinimizeMeeting"] boolValue];
     }
-    
+
     if (settings[@"disableClearWebKitCache"]) {
       disableClearWebKitCache = [[settings objectForKey:@"disableClearWebKitCache"] boolValue];
     }
@@ -449,6 +449,10 @@ RCT_EXPORT_METHOD(removeListeners : (NSInteger)count) {
   } else {
     [self setMeetingSettings];
     initializePromiseResolve(@"Initialize Zoom SDK successfully.");
+    [[MobileRTC sharedRTC] getMeetingSettings].meetingInviteHidden = YES;
+    [[MobileRTC sharedRTC] getMeetingSettings].meetingTitleHidden = YES;
+    [[MobileRTC sharedRTC] getMeetingSettings].meetingShareHidden = YES;
+    [[MobileRTC sharedRTC] getMeetingSettings].autoConnectInternetAudio = YES;
   }
 }
 
